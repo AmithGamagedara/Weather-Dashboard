@@ -1,0 +1,97 @@
+.forecast-wrapper {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  flex: 1;
+  width: 100%;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  height: 500px;
+}
+
+.forecast-wrapper h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.forecast-list::-webkit-scrollbar {
+  height: 6px;
+}
+
+.forecast-list::-webkit-scrollbar-thumb {
+  background:rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.forecast-list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  max-width: 680px;
+  flex-wrap: nowrap;  
+}
+
+.fw-icon-wrapper{
+  width: 60px;
+  height: 60px;
+  background-color: rgb(255, 178, 63);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-card {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 1rem 0.85rem;
+  width: 120px;
+  min-width: 120px;         
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.fc-card:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.fc-card.active {
+  background:rgb(255, 255, 255);
+  outline: 1px solid rgb(174, 174, 174);
+}
+
+.fc-day {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.fc-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.fc-temps {
+  display: flex;
+  gap: 2rem;
+  font-weight: 700;
+}
+
+.fc-low {
+  color: #6e6e6e;
+}
+
+.fc-desc {
+  font-size: 0.75rem;
+  color: #6e6e6e;
+}

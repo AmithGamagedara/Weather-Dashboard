@@ -1,56 +1,61 @@
 import "./App.css";
-import CurrentWeather from "./Components/CurrentWeather";
-import Forecast from "./Components/Forecast";
+import CurrentWeather from "./Components/CurrentWeather/CurrentWeather";
+import Forecast from "./Components/Forecast/Forecast";
 
 function App() {
   const currentWeather = {
-    temperature: 22,
-    condition: "sunny",
-    description: "Sunny",
-    location: "London, UK",
-    humidity: 65,
-    windSpeed: 12,
-    pressure: 1013,
-    feelsLike: 25,
+    temp: 22,
+    con: "sunny",
+    lo: "Colombo",
+    icon: "./assets/weather_icons/sunny.svg",
+    hum: 65,
+    wiSpeed: 12,
+    pres: 1013,
+    fLike: 25,
   };
 
-  const forecast = [
-    {
-      name: "Today",
-      high: 25,
-      low: 15,
-      condition: "sunny",
-      description: "Sunny",
-    },
-    {
-      name: "Tomorrow",
-      high: 23,
-      low: 14,
-      condition: "partlyCloudy",
-      description: "Partly Cloudy",
-    },
-    {
-      name: "Wednesday",
-      high: 18,
-      low: 12,
-      condition: "lightRain",
-      description: "Light Rain",
-    },
-    {
-      name: "Thursday",
-      high: 20,
-      low: 13,
-      condition: "thunderstorm",
-      description: "Thunderstorm",
-    },
-    {
-      name: "Friday",
-      high: 24,
-      low: 16,
-      condition: "clear",
-      description: "Clear",
-    },
-  ];
+  const demoForecast = [
+  {
+    id: 1,
+    day: "Today",
+    hi: 25,
+    lo: 15,
+    icon: "https://openweathermap.org/img/wn/01d@2x.png",
+    desc: "Sunny",
+  },
+  {
+    id: 2,
+    day: "Tomorrow",
+    hi: 23,
+    lo: 14,
+    icon: "https://openweathermap.org/img/wn/02d@2x.png",
+    desc: "Partly Cloudy",
+  },
+  {
+    id: 3,
+    day: "Wed",
+    hi: 18,
+    lo: 12,
+    icon: "https://openweathermap.org/img/wn/10d@2x.png",
+    desc: "Light Rain",
+  },
+  {
+    id: 4,
+    day: "Thu",
+    hi: 20,
+    lo: 13,
+    icon: "https://openweathermap.org/img/wn/11d@2x.png",
+    desc: "Thunderstorm",
+  },
+  {
+    id: 5,
+    day: "Fri",
+    hi: 24,
+    lo: 16,
+    icon: "https://openweathermap.org/img/wn/01d@2x.png",
+    desc: "Clear",
+  },
+];
 
   return (
     <div className="weather-dashboard">
@@ -64,10 +69,10 @@ function App() {
 
       <div className="dashboard-content">
         <div className="left-container">
-        <CurrentWeather/>
+        <CurrentWeather {...currentWeather}/>
         </div>
         <div className="right-container">
-        <Forecast/>
+        <Forecast items={demoForecast}/>
         </div>
       </div>
     </div>
