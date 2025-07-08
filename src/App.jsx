@@ -63,8 +63,12 @@ function App() {
       </header>
 
       <div className="dashboard-content">
-        <CurrentWeather />
-        <Forecast />
+        <div className="left-container">
+        <CurrentWeather/>
+        </div>
+        <div className="right-container">
+        <Forecast/>
+        </div>
       </div>
     </div>
   );

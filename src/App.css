@@ -28,3 +28,27 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.dashboard-title {
+  text-shadow: 1px 1px rgb(154, 154, 154);
+}
+
+/* .left-container {
+  background: rgb(255, 255, 255);
+  height: 540px;
+  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+} */
+
+.right-container {
+  background: rgb(255, 255, 255);
+  height: 500px;
+  border-radius: 12px;
+}
