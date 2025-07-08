@@ -1,6 +1,6 @@
 import React from "react";
 
-function WeatherCard({ day, hi, lo, icon, desc, active, onSelect }) {
+function WeatherCard({ day, temp_max, temp_min, icon, desc, active, onSelect }) {
   return (
     <button className={`fc-card ${active ? "active" : ""}`} onClick={onSelect}>
       <p className="fc-day">{day}</p>
@@ -8,8 +8,8 @@ function WeatherCard({ day, hi, lo, icon, desc, active, onSelect }) {
       <img src={icon} alt={desc} className="fc-icon"/>
       </div>
       <div className="fc-temps">
-        <span>{hi}°</span>
-        <span className="fc-low">{lo}°</span>
+        <span>{temp_max}°</span>
+        <span className="fc-low">{temp_min}°</span>
       </div>
       <p className="fc-desc">{desc}</p>
     </button>
