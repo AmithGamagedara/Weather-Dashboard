@@ -14,3 +14,16 @@ export const getCurrentWeather = async (city) => {
     return null;
   }
 };
+
+export const getForecast = async (city) => {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`
+    );
+    if (!res.ok) throw new Error("Forecast API Error");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching forecast:", error);
+    return null;
+  }
+};
