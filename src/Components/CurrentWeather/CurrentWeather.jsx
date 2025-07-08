@@ -17,7 +17,7 @@ function CurrentWeather({
     <div>
       <section className="cw-card">
         <div className="cw-icon-wrapper">
-          <img  className="cw-icon" alt={icon} src={sunny} />
+          <img  className="cw-icon" alt={icon} src={icon}/>
         </div>
 
         <h2 className="cw-temp">{temp}°C</h2>
@@ -40,7 +40,7 @@ function CurrentWeather({
           </div>
           <div className="cw-grid-bg">
             <p className="cw-label">Feels Like</p>
-            <p className="cw-value">{fLike}°C</p>
+            <p className="cw-value">{fLike} °C</p>
           </div>
         </div>
 
