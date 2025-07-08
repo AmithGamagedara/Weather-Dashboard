@@ -1,18 +1,44 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import CurrentWeather from "./Components/CurrentWeather/CurrentWeather";
 import Forecast from "./Components/Forecast/Forecast";
+import {getCurrentWeather} from "./services/weatherApi";
 
 function App() {
-  const currentWeather = {
-    temp: 22,
-    con: "sunny",
-    lo: "Colombo",
-    icon: "./assets/weather_icons/sunny.svg",
-    hum: 65,
-    wiSpeed: 12,
-    pres: 1013,
-    feels_like: 25,
-  };
+
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const city = "Colombo";
+
+ useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCurrentWeather(city);
+      if (data) {
+        setCurrentWeather({
+          temp: data.main.temp,
+          con: data.weather[0].main,
+          lo: data.name,
+          icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+          hum: data.main.humidity,
+          wiSpeed: data.wind.speed,
+          pres: data.main.pressure,
+          fLike: data.main.feels_like,
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // const currentWeather = {
+  //   temp: 22,
+  //   con: "sunny",
+  //   lo: "Colombo",
+  //   icon: "./assets/weather_icons/sunny.svg",
+  //   hum: 65,
+  //   wiSpeed: 12,
+  //   pres: 1013,
+  //   feels_like: 25,
+  // };
 
   const demoForecast = [
   {
@@ -69,7 +95,11 @@ function App() {
 
       <div className="dashboard-content">
         <div className="left-container">
-        <CurrentWeather {...currentWeather}/>
+        {currentWeather ? (
+            <CurrentWeather {...currentWeather} />
+          ) : (
+            <p>Loading current weather...</p>
+          )}
         </div>
         <div className="right-container">
         <Forecast items={demoForecast}/>
