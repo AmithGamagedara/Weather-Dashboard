@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import WeatherCard from '../Common/WeatherCard';
 import "../Forecast/Forecast.css"
 
-function Forecast({items}) {
+function Forecast({items=[]}) {
 
     const [selectedId, setSelectedId] = useState(null);
 
