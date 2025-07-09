@@ -7,52 +7,64 @@ import { getCurrentWeather, getForecast } from "./services/weatherApi";
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
+  const [error, setError] = useState(null);
   const city = "Colombo";
 
   useEffect(() => {
+    setError(null);
     const fetchData = async () => {
-      const data = await getCurrentWeather(city);
-      const fdata = await getForecast(city);
-      if (data) {
-        setCurrentWeather({
-          temp: data.main.temp,
-          con: data.weather[0].main,
-          lo: data.name,
-          icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
-          hum: data.main.humidity,
-          wiSpeed: data.wind.speed,
-          pres: data.main.pressure,
-          fLike: data.main.feels_like,
-        });
-      }
+      try {
+        //data=current weather data
+        const data = await getCurrentWeather(city);
+        //fdata=forecast weather data
+        const fdata = await getForecast(city);
 
-      if (fdata && Array.isArray(fdata.list)) {
-        const daily = fdata.list
-          .filter((i) => i.dt_txt && i.dt_txt.includes("12:00:00"))
-          .slice(0, 5);
+        if (!data) throw new Error("Couldn’t load current weather");
+        if (!fdata || !Array.isArray(fdata.list))
+          throw new Error("Couldn’t load forecast");
 
-        const formatted = daily.map((item, idx) => {
-          const dateObj = new Date(item.dt * 1000);
-          const label =
-            idx === 0
-              ? "Today"
-              : idx === 1
-              ? "Tomorrow"
-              : dateObj.toLocaleDateString("en-US", { weekday: "short" });
+        if (data) {
+          setCurrentWeather({
+            temp: data.main.temp,
+            con: data.weather[0].main,
+            lo: data.name,
+            icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+            hum: data.main.humidity,
+            wiSpeed: data.wind.speed,
+            pres: data.main.pressure,
+            fLike: data.main.feels_like,
+          });
+        }
 
-          return {
-            id: idx + 1,
-            day: label,
-            temp_max: Math.round(item.main.temp_max),
-            temp_min: Math.round(item.main.temp_min),
-            icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
-            desc: item.weather[0].main,
-          };
-        });
+        if (fdata && Array.isArray(fdata.list)) {
+          const daily = fdata.list
+            .filter((i) => i.dt_txt && i.dt_txt.includes("12:00:00"))
+            .slice(0, 5);
 
-        setForecast(formatted);
-      } else {
-        console.warn("Invalid forecast data:", fdata);
+          const formatted = daily.map((item, idx) => {
+            const dateObj = new Date(item.dt * 1000);
+            const label =
+              idx === 0
+                ? "Today"
+                : idx === 1
+                ? "Tomorrow"
+                : dateObj.toLocaleDateString("en-US", { weekday: "short" });
+
+            return {
+              id: idx + 1,
+              day: label,
+              temp_max: Math.round(item.main.temp_max),
+              temp_min: Math.round(item.main.temp_min),
+              icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+              desc: item.weather[0].main,
+            };
+          });
+
+          setForecast(formatted);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
       }
     };
 
@@ -115,6 +127,13 @@ function App() {
 
   return (
     <div className="weather-dashboard">
+      {error && (
+        <div className="alert-box">
+          <span>{error}</span>
+          <button onClick={() => setError(null)}>&times;</button>
+        </div>
+      )}
+      {/* header section */}
       <header className="dashboard-header">
         <h1 className="dashboard-title">
           <span className="title-icon">🌤️</span>
@@ -123,20 +142,13 @@ function App() {
         <p className="dashboard-subtitle">Your personal weather companion</p>
       </header>
 
+      {/* dashboard content section */}
       <div className="dashboard-content">
         <div className="left-container">
-          {currentWeather ? (
-            <CurrentWeather {...currentWeather} />
-          ) : (
-            <p>Loading current weather...</p>
-          )}
+          <CurrentWeather data={currentWeather} />
         </div>
         <div className="right-container">
-          {forecast.length > 0 ? (
-            <Forecast items={forecast} />
-          ) : (
-            <p>Loading forecast...</p>
-          )}
+          <Forecast items={forecast} />
         </div>
       </div>
     </div>
