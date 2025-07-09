@@ -85,3 +85,28 @@
   background: #0077ff;
   color: #fff;
 }
+
+@media (max-width: 480px) {
+  
+  .cw-temp {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.cw-condition {
+  font-size: 1rem;
+  margin-top: -1rem;
+}
+
+.cw-value {
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.cw-label {
+  font-size: 0.6rem;
+}
+
+.cw-btn {
+  font-size: 0.8rem;
+}
