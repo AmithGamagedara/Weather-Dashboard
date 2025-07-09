@@ -1,5 +1,5 @@
 # 🌦️ React Weather Dashboard
-This is a responsive weather dashboard app that shows you the current weather and a 5-day forecast for your chosen city. It is built to be easy to use and works well on both desktop and mobile devices.
+This is a responsive weather dashboard application that shows you the current weather and a 5-day forecast for your chosen city. It is built to be easy to use and works well on both desktop and mobile devices.
 
 <div align="left">
   <img src="https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" />
@@ -23,6 +23,12 @@ This is a responsive weather dashboard app that shows you the current weather an
 
 ---
 <br/>
+
+## 🌐 Live Demo
+
+💻 [Open the application here](https://weather-dashboard-react-application.netlify.app/)
+
+<br/><br/>
 
 > **API key setup:**  
 > A sample file named **`.env.sample`** is included in the project.  
