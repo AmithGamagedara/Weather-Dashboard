@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import WeatherCard from "../Common/WeatherCard";
-import "../Forecast/Forecast.css";
+import "./Forecast.css";
 import Loader from "../Common/Loader";
 
 function Forecast({ items = [] }) {
