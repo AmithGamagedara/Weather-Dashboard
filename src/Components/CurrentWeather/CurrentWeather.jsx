@@ -1,23 +1,22 @@
 import React from "react";
 import sunny from "../../assets/weather_icons/sunny.svg";
 import "../CurrentWeather/CurrentWeather.css";
+import Loader from "../Common/Loader";
 
-function CurrentWeather({
-    temp,
-    con,
-    lo,
-    icon,
-    hum,
-    wiSpeed,
-    pres,
-    fLike,
-}) {
+function CurrentWeather({ data }) {
+  if (!data)
+    return (
+      <section className="cw-card">
+        <Loader />
+      </section>
+    );
+  const { temp, con, lo, icon, hum, wiSpeed, pres, fLike } = data;
 
   return (
     <div>
       <section className="cw-card">
         <div className="cw-icon-wrapper">
-          <img  className="cw-icon" alt={icon} src={icon}/>
+          <img className="cw-icon" alt={icon} src={icon} />
         </div>
 
         <h2 className="cw-temp">{temp}°C</h2>

@@ -1,4 +1,6 @@
 .cw-card {
+  display: flex;
+  justify-content: center;
   background: #ffffff;
   border-radius: 1rem;
   padding: 2rem 2.5rem;
